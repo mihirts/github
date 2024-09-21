@@ -10,6 +10,7 @@ struct STUDENT_DATA {
 };
 
 int main() {
+
     std::vector<STUDENT_DATA> students;
     std::ifstream inputFile("StudentData.txt");
 
@@ -37,13 +38,6 @@ int main() {
     for (const auto& student : students) {
         std::cout << "First Name: " << student.firstName << ", Last Name: " << student.lastName << std::endl;
     }
-
-    // Commit and push changes to the repository (assuming you're using Git)
-    // System commands should be executed in the terminal, not within C++ code
-    // Example commands:
-    // system("git add .");
-    // system("git commit -m 'Added student data processing'");
-    // system("git push origin master");
 
     return 0;
 }

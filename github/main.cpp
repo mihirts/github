@@ -10,7 +10,6 @@ struct STUDENT_DATA {
 };
 
 int main() {
-
     std::vector<STUDENT_DATA> students;
     std::ifstream inputFile("StudentData.txt");
 
@@ -34,10 +33,14 @@ int main() {
 
     inputFile.close();
 
-    // Optional: Print the students to verify
+    // Print all student information in debug mode
+#ifdef _DEBUG
     for (const auto& student : students) {
-        std::cout << "First Name: " << student.firstName << ", Last Name: " << student.lastName << std::endl;
+        std::cout << student.firstName << " " << student.lastName << std::endl;
     }
+#endif
+ 
+    
 
     return 0;
 }

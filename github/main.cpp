@@ -9,13 +9,13 @@ struct STUDENT_DATA {
     std::string lastName;
 };
 
-int main() {
-    std::vector<STUDENT_DATA> students;
-    std::ifstream inputFile("StudentData.txt");
+// Function to read data from "StudentData.txt"
+void readStudentData(const std::string& filename, std::vector<STUDENT_DATA>& students) {
+    std::ifstream inputFile(filename);
 
     if (!inputFile.is_open()) {
-        std::cerr << "Could not open the file!" << std::endl;
-        return 1;
+        std::cerr << "Could not open the file: " << filename << std::endl;
+        return;
     }
 
     std::string line;
@@ -32,28 +32,20 @@ int main() {
     }
 
     inputFile.close();
+}
 
-#ifdef PRE_RELEASE
-    std::cout << "Running Pre-Release Version" << std::endl;
-#else
-    std::cout << "Running Standard Version" << std::endl;
-#endif
+int main() {
+    std::vector<STUDENT_DATA> students;
 
+    // Call the function to read data from "StudentData.txt"
+    readStudentData("StudentData.txt", students);
 
-    // Print all student information in debug mode
 #ifdef _DEBUG
+    std::cout << "Debug Mode: Printing all student information:" << std::endl;
     for (const auto& student : students) {
         std::cout << student.firstName << " " << student.lastName << std::endl;
     }
 #endif
-
-#ifdef PRE_RELEASE
-    std::ifstream emailFile("StudentData_Emails.txt");
-    // Additional logic for handling emails
-    emailFile.close();
-#endif
- 
-    
 
     return 0;
 }

@@ -33,11 +33,24 @@ int main() {
 
     inputFile.close();
 
+#ifdef PRE_RELEASE
+    std::cout << "Running Pre-Release Version" << std::endl;
+#else
+    std::cout << "Running Standard Version" << std::endl;
+#endif
+
+
     // Print all student information in debug mode
 #ifdef _DEBUG
     for (const auto& student : students) {
         std::cout << student.firstName << " " << student.lastName << std::endl;
     }
+#endif
+
+#ifdef PRE_RELEASE
+    std::ifstream emailFile("StudentData_Emails.txt");
+    // Additional logic for handling emails
+    emailFile.close();
 #endif
  
     
